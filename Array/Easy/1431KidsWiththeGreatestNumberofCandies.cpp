@@ -24,6 +24,7 @@ public:
            }
            else{
                ans[i]=false;
+           }
        }
      return ans;   
     }
