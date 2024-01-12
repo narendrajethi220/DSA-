@@ -65,7 +65,7 @@ public:
 };
 
 
-// Optimized Approach
+// Optimised Approach
 class Solution {
 public:
     int findNumbers(vector<int>& nums) {
