@@ -97,6 +97,66 @@ if(ith==1){
 
 }
 
+Node* insertAtHead(Node* head, int data){
+  return new Node(data,head);
+}
+
+Node* insertAtTail(Node*head, int data){
+    if(head==NULL)return new Node(data);
+    Node* temp=head;
+    while(temp->next!=nullptr){
+        temp=temp->next;
+    }
+    Node* nNode=new Node(data);
+    temp->next=nNode;
+    return head;
+}
+
+Node* insertAtIthPosition(Node* head, int data, int i){
+    if(head==NULL){
+        if(i==1){
+            return new Node(data);
+        }
+        else return NULL;
+    }
+   int cnt=0;
+   Node* temp=head;
+   while(temp){
+    cnt++;
+    if(cnt==i-1){
+        Node* x=new Node(data);
+        x->next=temp->next;
+        temp->next=x;
+        return head;
+    }
+    temp=temp->next;
+   }
+  cnt++;
+  if(cnt==i+1){
+    Node* x=new Node(data);
+    temp->next=x;
+    return head;
+  }
+
+return head;
+}
+
+Node* insertingBforeValue(Node* head, int data, int val){
+  if(head==NULL)return NULL;
+  if(head->data==val)return new Node(data,head);
+  Node* temp=head;
+  while(temp){
+    if(temp->next->data==val){
+     Node* x=new Node(data);
+     x->next=temp->next;
+     temp->next=x;
+     return head;
+    }
+    temp=temp->next;
+  }
+return head;
+}
+
 int main(){
     vector<int> arr={1,3,5,7,9};
     Node* LL=convertArrayToLL(arr);
@@ -116,7 +176,21 @@ int main(){
     int i;
     cout<<"Enter ith Position to delete";
     cin>>i;
+    cout<<endl;
     Node* NewList=deleteIth(newL,i);
     traversingInLL(NewList);
+    cout<<endl;
+    Node* newNode=insertAtHead(NewList,11);
+    traversingInLL(newNode);
+    cout<<endl;
+    Node*  newTemp=insertAtTail(newNode,13);
+    traversingInLL(newTemp);
+     cout<<endl;
+    Node *newTemp1=insertAtIthPosition(newTemp,11,6);
+    traversingInLL(newTemp1);
+    cout<<endl;
+    Node* newTemp2=insertingBforeValue(newTemp1,0,1);
+    traversingInLL(newTemp2);
+
     return 0;
 }
